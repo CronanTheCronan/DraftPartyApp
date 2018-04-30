@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="FootbalLinqData">
+  <DataContextMoniker Name="/FootbalLinqDataDataContext" />
+  <nestedChildShapes>
+    <classShape Id="8e9b6901-355a-43d7-85ef-e49a0aab6bfb" absoluteBounds="5.25, 0.625, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/FootbalLinqDataDataContext/College" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7a9e45e3-ed6c-4970-8bd8-4bdafd3dfb4e" absoluteBounds="5.265, 1.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9c9123dc-d4ea-4d87-9bb3-dd2f0479c25b" absoluteBounds="1.375, 1.875, 2, 1.9631982421875">
+      <DataClassMoniker Name="/FootbalLinqDataDataContext/Player" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0708dddf-6545-4efd-b0ee-d6292ac830ed" absoluteBounds="1.3899999999999997, 2.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.25 : 1.22199625651042); (2.375 : 1.22199625651042); (2.375 : 1.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/FootbalLinqDataDataContext/College/College_Player" />
+      <nodes>
+        <classShapeMoniker Id="8e9b6901-355a-43d7-85ef-e49a0aab6bfb" />
+        <classShapeMoniker Id="9c9123dc-d4ea-4d87-9bb3-dd2f0479c25b" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="5f518e3c-b7e3-474a-9ed5-5f2ae2295c5f" absoluteBounds="5.25, 2.125, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/FootbalLinqDataDataContext/Position" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3818a893-7a17-4f7b-be81-4a1a31729e11" absoluteBounds="5.2650000000000006, 2.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.25 : 2.72199625651042); (3.375 : 2.72199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/FootbalLinqDataDataContext/Position/Position_Player" />
+      <nodes>
+        <classShapeMoniker Id="5f518e3c-b7e3-474a-9ed5-5f2ae2295c5f" />
+        <classShapeMoniker Id="9c9123dc-d4ea-4d87-9bb3-dd2f0479c25b" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="147f5a9e-f49a-408b-b66c-050e27323fa0" absoluteBounds="5.25, 3.75, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/FootbalLinqDataDataContext/Team" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f7103750-9a21-4e93-85c3-07e81501b5b4" absoluteBounds="5.265, 4.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.25 : 4.67954802604167); (2.375 : 4.67954802604167); (2.375 : 3.8381982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/FootbalLinqDataDataContext/Team/Team_Player" />
+      <nodes>
+        <classShapeMoniker Id="147f5a9e-f49a-408b-b66c-050e27323fa0" />
+        <classShapeMoniker Id="9c9123dc-d4ea-4d87-9bb3-dd2f0479c25b" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -1,0 +1,61 @@
+﻿h1, h2 {
+    text-align: center;
+}
+
+table {
+    width: 80vw;
+    height: 60vw;
+    border: 2px solid black;
+    background-color: white;
+}
+
+thead {
+    border-bottom: 2px solid black;
+}
+
+th {
+    text-align: center;
+}
+
+td {
+    border: 1px solid black;
+}
+
+    td:hover {
+        cursor: pointer;
+    }
+
+#divHeaderContainer {
+    margin-top: 35px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+#playerSelectModal {
+    display: none;
+}
+
+#draftBoardContainer {
+    padding-top: 35px;
+    display: flex;
+    justify-content: center;
+    background-color: #343a40;
+}
+
+
+
+#divGVContainer {
+    width: 70vw;
+    margin: 20px auto;
+}
+
+#leagueNameSpan {
+    text-decoration: underline;
+}
+
+.pickSelection {
+    background-color: dimgray;
+}
+
