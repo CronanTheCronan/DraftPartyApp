@@ -22,12 +22,8 @@
                 <div><span>Position Filter: </span><asp:DropDownList ID="ddlPositions" runat="server" OnSelectedIndexChanged="ddlPositions_SelectedIndexChanged"></asp:DropDownList></div>
                 <div><span>Team Filter: </span><asp:DropDownList ID="ddlTeams" runat="server"></asp:DropDownList></div>
             </div>
-            <div id="divPlayerTable">
-                <div id="divGVContainer" style="width: 75vw; margin: 20px auto;">
-                    <asp:GridView ID="gvPlayers" runat="server">
-                        <RowStyle Height="20px" Width="20px" />
-                    </asp:GridView>
-                </div>
+            <div id="divPlayerTable" runat="server" style="height: 200px;">
+                <asp:Panel ID="pnlPlayerContainer" runat="server"></asp:Panel>
             </div>
         </div>
     </section>

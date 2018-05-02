@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 
 <html>
-<head runat="server">
+<head runat="server" ng-app="draftBoardApp">
     <title>Draft Party!</title>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/myStyles.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<body ng-controller="draftBoardAppController">
     <form id="form1" runat="server">
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -47,6 +47,7 @@
     </form>
     <script src="Scripts/jquery-3.0.0.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/angular.js"></script>
     <script src="Scripts/mainScripts.js"></script>
 </body>
 </html>

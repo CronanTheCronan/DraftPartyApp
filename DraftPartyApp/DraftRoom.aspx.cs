@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows;
 using System.Web.UI.HtmlControls;
 using DraftPartyApp.App_Data;
 
@@ -17,16 +18,49 @@ namespace DraftPartyApp
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
             FootbalLinqDataDataContext linqCon = new FootbalLinqDataDataContext();
 
-            LoadPositionDDL(linqCon);
+            
+
             LoadTeamsDDL(linqCon);
+            LoadPositionDDL(linqCon);
 
-            gvPlayers.DataSource = from player in linqCon.Players
-                                   where player.position_id == 1 && player.team_id == 2
-                                   select player;
-            gvPlayers.DataBind();
+            string CS = "data source=.; database = FantasyFootball; integrated security=SSPI";
 
+            using (SqlConnection con = new SqlConnection(CS))
+            {
+
+                SqlDataAdapter da = new SqlDataAdapter("sp_GetPlayersByFilter", con);
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                DataSet ds = new DataSet();
+                DataTable dt = new DataTable();
+
+                da.Fill(ds);
+                dt = ds.Tables["Players"];
+
+                int i = 1;
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    string divId = "div" + i;
+                    string script = "<script type='text/javascript'>alert('" + row["last_name"] + "');</script>";
+                    Response.Write(script);
+
+                    CreateDiv(divId);
+                    i++;
+                }
+            }
+        }
+
+        private void CreateDiv(string divId)
+        {
+            HtmlGenericControl div = new HtmlGenericControl("div");
+            div.Attributes.Add("id", divId);
+            div.Attributes.Add("class", "test");
+            div.Attributes.CssStyle.Add("width", "150px");
+            div.Attributes.CssStyle.Add("background-color", "red");
+            divPlayerTable.Controls.Add(div);
         }
 
         private void LoadTeamsDDL(FootbalLinqDataDataContext linqCon)
@@ -57,7 +91,7 @@ namespace DraftPartyApp
         protected int setCurrentRound()
         {
             Draft draft = new Draft();
-            draft.currentRound = 0;
+            int currentRound = draft.currentRound = 0;
 
             return draft.currentRound;
         }
@@ -65,8 +99,6 @@ namespace DraftPartyApp
         protected void ddlPositions_SelectedIndexChanged(object sender, EventArgs e)
         {
             int playerID = ddlPositions.SelectedIndex;
-
-            
 
         }
     }

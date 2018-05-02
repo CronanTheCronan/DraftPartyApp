@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/myAngularScript.js"></script>
+</head>
+<body ng-app="draftBoardApp">
+    <div ng-controller="draftBoardAppController">
+        <ul ng-repeat="player in players">
+            <li>{{ player.playerId }}</li>
+            <li>{{ player.playerLastName }}</li>
+            <li>{{ player.playerFirstName }}</li>
+            <li>{{ player.positionId }}</li>
+            <li>{{ player.teamId }}</li>
+        </ul>
+    </div>
+
+</body>
+</html>

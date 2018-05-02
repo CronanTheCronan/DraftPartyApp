@@ -46,6 +46,7 @@ td {
 
 
 
+
 #divGVContainer {
     width: 70vw;
     margin: 20px auto;
@@ -59,3 +60,10 @@ td {
     background-color: dimgray;
 }
 
+
+.test {
+    height: 50px;
+    width: 150px;
+    background-color: red;
+    border: 1px solid black;
+}
