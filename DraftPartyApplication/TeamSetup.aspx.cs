@@ -72,15 +72,15 @@ namespace DraftPartyApplication
                     {
                         TextBox tb = new TextBox();
                         string temp = i.ToString();
-                        htmlTable.AppendLine("<td runat='server' ID='teamsTxtTD" + temp + "'>");
-                        htmlTable.AppendLine("<input type='text' id='txtTeamName" + i + "' />");
+                        htmlTable.AppendLine("<td id='teamsTxtTD" + temp + "'>");
+                        htmlTable.AppendLine("<input type='text' id='txtTeamName" + i + "' class='teamsInputs' />");
                         htmlTable.AppendLine("</td>");
                     }
                     else
                     {
                         Label lbl = new Label();
-                        htmlTable.AppendLine("<td runat='server' ID='teamsLblTD" + i + "'>");
-                        htmlTable.AppendLine("<label for='txtTeamName" + i + "'>Team " + i + "</label>");
+                        htmlTable.AppendLine("<td id='teamsLblTD" + i + "' align='right'>");
+                        htmlTable.AppendLine("<label for='txtTeamName" + i + "' class='teamsLabels' id='Team" + i + "'>Team " + i + "</label>");
                         htmlTable.AppendLine("</td>");
                     }
                 }
@@ -108,6 +108,14 @@ namespace DraftPartyApplication
                 textBoxes[i] = new TextBox();
                 textBoxes[i].ID = "txtTeamName" + temp;
             }
+        }
+
+        protected void btnTeamsSetup_Click(object sender, EventArgs e)
+        {
+            GlobalVariables.TeamIdList = hidTeamsLabelsList.Value;
+            GlobalVariables.TeamNameList = hidTeamsNamesList.Value;
+
+            //Response.Redirect("~/DraftSetup.aspx");
         }
     }
 }

@@ -70,8 +70,10 @@
   <ItemGroup>
     <Content Include="Content\Scripts\script.js" />
     <Content Include="Content\Scripts\bootstrap.min.js" />
+    <Content Include="Content\Scripts\teamSetupScript.js" />
     <Content Include="Content\Stylesheets\bootstrap.min.css" />
     <Content Include="Content\Stylesheets\styles.css" />
+    <Content Include="DraftSetup.aspx" />
     <Content Include="Global.asax" />
     <Content Include="LeagueSetup.aspx" />
     <Content Include="TeamSetup.aspx" />
@@ -81,6 +83,13 @@
   <ItemGroup>
     <Compile Include="App_Code\GlobalVariables.cs" />
     <Compile Include="App_Code\Constants.cs" />
+    <Compile Include="DraftSetup.aspx.cs">
+      <DependentUpon>DraftSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DraftSetup.aspx.designer.cs">
+      <DependentUpon>DraftSetup.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

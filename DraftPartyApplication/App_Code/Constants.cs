@@ -1,5 +1,7 @@
 ﻿public static class Constants
 {
-    public const string leagueName = "LeagueName";
+    public const string leagueName = "";
     public const int numberOfTeams = -1;
+    public const string teamIdList = "";
+    public const string teamNameList = "";
 }

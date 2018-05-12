@@ -8,6 +8,8 @@ public static class GlobalVariables
 {
     private static string _leagueName;
     private static int _numberOfTeams;
+    private static string _teamIdList;
+    private static string _teamNameList;
 
     public static string LeagueName
     {
@@ -33,9 +35,35 @@ public static class GlobalVariables
         }
     }
 
+    public static string TeamIdList
+    {
+        get
+        {
+            return _teamIdList;
+        }
+        set
+        {
+            _teamIdList = value;
+        }
+    }
+
+    public static string TeamNameList
+    {
+        get
+        {
+            return _teamNameList;
+        }
+        set
+        {
+            _teamNameList = value;
+        }
+    }
+
     public static void Instanstiate()
     {
         HttpContext.Current.Session["LeagueName"] = Constants.leagueName;
         HttpContext.Current.Session["NumberOfTeams"] = Constants.numberOfTeams;
+        HttpContext.Current.Session["TeamIdList"] = Constants.teamIdList;
+        HttpContext.Current.Session["TeamNameList"] = Constants.teamNameList;
     }
 }

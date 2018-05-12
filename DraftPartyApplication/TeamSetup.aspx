@@ -2,13 +2,21 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div>
-        <h2>Teams Setup</h2>
-    </div>
     <div id="divTeamSetupContainer">
         <div>
-            <asp:Literal ID="tblTeamNames" runat="server" />
+            <h2>Teams Setup</h2>
+        </div>
+        <div>
+            <div>
+                <asp:Literal ID="tblTeamNames" runat="server" />
+            </div>
+        </div>
+        <div id="divLSButtonContainer">
+            <asp:Button runat="server" ID="btnTeamsSetup" CssClass="btn btn-dark" Text="Next" OnClick="btnTeamsSetup_Click" OnClientClick="defineTeams()" />
         </div>
     </div>
-
+    <asp:HiddenField ID="hidTeamsLabelsList" runat="server" />
+    <asp:HiddenField ID="hidTeamsNamesList" runat="server" />
+    <script src="Content/Scripts/teamSetupScript.js"></script>
 </asp:Content>
+
