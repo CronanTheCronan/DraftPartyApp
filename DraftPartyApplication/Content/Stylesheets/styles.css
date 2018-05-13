@@ -74,3 +74,33 @@ h3 {
 #teamsTable label {
     text-align: right;
 }
+
+#divDraftSetupContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: space-between;
+}
+
+#divChoicesContainer {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    width: 100vw;
+}
+
+.draftSetupGrid {
+    border: 1px solid black;
+    width: 20vw;
+}
+
+.roundSetupCount {
+    width: 35px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
