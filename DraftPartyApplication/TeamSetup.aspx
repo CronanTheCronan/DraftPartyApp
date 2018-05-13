@@ -15,8 +15,8 @@
             <asp:Button runat="server" ID="btnTeamsSetup" CssClass="btn btn-dark" Text="Next" OnClick="btnTeamsSetup_Click" OnClientClick="defineTeams()" />
         </div>
     </div>
-    <asp:HiddenField ID="hidTeamsLabelsList" runat="server" />
-    <asp:HiddenField ID="hidTeamsNamesList" runat="server" />
+    <asp:HiddenField ID="hidTeamsLabelsList" runat="server" ClientIDMode="Static" Value="Hello" />
+    <asp:HiddenField ID="hidTeamsNamesList" runat="server" ClientIDMode="Static" />
     <script src="Content/Scripts/teamSetupScript.js"></script>
 </asp:Content>
 

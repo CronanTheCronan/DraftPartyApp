@@ -115,7 +115,7 @@ namespace DraftPartyApplication
             GlobalVariables.TeamIdList = hidTeamsLabelsList.Value;
             GlobalVariables.TeamNameList = hidTeamsNamesList.Value;
 
-            //Response.Redirect("~/DraftSetup.aspx");
+            Response.Redirect("~/DraftSetup.aspx");
         }
     }
 }
