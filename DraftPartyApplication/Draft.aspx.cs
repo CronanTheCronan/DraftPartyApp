@@ -14,11 +14,11 @@ namespace DraftPartyApplication
         protected static int cols = GlobalVariables.NumberOfTeams;
         protected string teamIds = GlobalVariables.TeamIdList;
         protected string teamNames = GlobalVariables.TeamNameList;
-        Dictionary<string, string> teamNamesDict = new Dictionary<string, string>();
+        protected string leagueName = GlobalVariables.LeagueName;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            PopulateTeamsDictionary();
+            lblLeagueName.Text = leagueName;
             GenerateTable(rows, cols);
         }
 
@@ -26,17 +26,25 @@ namespace DraftPartyApplication
         {
             string[] teamIdsArray = teamIds.Split(',');
             string[] teamNamesArray = teamNames.Split(',');
+            int roundCount = 1;
 
             StringBuilder htmlTable = new StringBuilder();
             htmlTable.AppendLine("<table id='draftBoard'>");
             htmlTable.AppendLine("<thead>");
             htmlTable.AppendLine("<tr>");
 
-            for (int i = 1; i <= cols; i++)
+            for (int i = 0; i <= cols; i++)
             {
-                htmlTable.AppendLine("<th>");
-                htmlTable.AppendLine(teamNamesArray[i - 1]);
-                htmlTable.AppendLine("</th>");
+                if(i == 0)
+                {
+                    htmlTable.AppendLine("<th></th>");
+                }
+                else
+                {
+                    htmlTable.AppendLine("<th>");
+                    htmlTable.AppendLine(teamNamesArray[i - 1]);
+                    htmlTable.AppendLine("</th>");
+                }
             }
 
             htmlTable.AppendLine("</tr>");
@@ -47,12 +55,19 @@ namespace DraftPartyApplication
             {
                 htmlTable.AppendLine("<tr>");
 
-                for (int j = 1; j <= cols; j++)
+                for (int j = 0; j <= cols; j++)
                 {
-                    htmlTable.AppendLine("<td>");
-                    htmlTable.AppendLine("</td>");
+                    if(j == 0)
+                    {
+                        htmlTable.AppendLine("<td>Round " + roundCount + "</td>");
+                        roundCount++;
+                    }
+                    else
+                    {
+                        htmlTable.AppendLine("<td id='row" + i + "col" + (j + 1) + "' class='draftCell'>");
+                        htmlTable.AppendLine("</td>");
+                    }
                 }
-
                 htmlTable.AppendLine("</tr>");
             }
 
@@ -62,15 +77,5 @@ namespace DraftPartyApplication
             tblDraftBoard.Text = htmlTable.ToString();
         }
 
-        private void PopulateTeamsDictionary()
-        {
-            string[] teamIdsArray = teamIds.Split(',');
-            string[] teamNamesArray = teamNames.Split(',');
-
-            for (int i = 0; i < teamIdsArray.Length; i++)
-            {
-                teamNamesDict.Add(teamIdsArray[i], teamNamesArray[i]);
-            }
-        }
     }
 }
