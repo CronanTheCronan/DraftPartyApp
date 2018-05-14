@@ -8,6 +8,7 @@
         </div>
         <div>
             <div>
+                <!-- TODO Sanitize, but also allow for commas -->
                 <asp:Literal ID="tblTeamNames" runat="server" />
             </div>
         </div>

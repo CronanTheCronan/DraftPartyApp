@@ -10,6 +10,7 @@
         var currentNumber = parseInt(stringArray[i]);
         total += currentNumber;
     }
+    console.log(total);
 
     $('#spanCalcResults').text(total);
 }

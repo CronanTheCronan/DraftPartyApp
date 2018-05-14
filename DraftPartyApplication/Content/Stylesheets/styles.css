@@ -83,6 +83,10 @@ h3 {
     align-content: space-between;
 }
 
+#divDraftSetupContainer h2 {
+    color: #4CAF50
+}
+
 #divChoicesContainer {
     display: flex;
     justify-content: space-around;
@@ -99,8 +103,35 @@ h3 {
     width: 35px;
 }
 
+#divDSButtonContainer, #divDSCalcBtnContainer, #divDDLNumberOfRoundsContainer {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+#divTableCalculatorContainer {
+    padding-top: 50px;
+}
+
+#tableCalculator th, td {
+    padding: 10px 15px;
+}
+
+#tableCalculator th {
+    text-align: center;
+}
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+#divDraftContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: space-evenly;
+    flex-direction: column;
+    height: 70vh
 }

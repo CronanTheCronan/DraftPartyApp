@@ -73,6 +73,7 @@
     <Content Include="Content\Scripts\teamSetupScript.js" />
     <Content Include="Content\Stylesheets\bootstrap.min.css" />
     <Content Include="Content\Stylesheets\styles.css" />
+    <Content Include="Draft.aspx" />
     <Content Include="DraftSetup.aspx" />
     <Content Include="Global.asax" />
     <Content Include="LeagueSetup.aspx" />
@@ -83,6 +84,13 @@
   <ItemGroup>
     <Compile Include="App_Code\GlobalVariables.cs" />
     <Compile Include="App_Code\Constants.cs" />
+    <Compile Include="Draft.aspx.cs">
+      <DependentUpon>Draft.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Draft.aspx.designer.cs">
+      <DependentUpon>Draft.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DraftSetup.aspx.cs">
       <DependentUpon>DraftSetup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
