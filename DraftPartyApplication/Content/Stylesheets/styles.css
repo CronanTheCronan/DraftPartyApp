@@ -160,4 +160,21 @@ input[type=number]::-webkit-outer-spin-button {
     height: 125px;
 }
 
+#divRoundInfoContainer {
+    margin: 20px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 95vw;
+}
+
+#divRoundInfo {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+#divDraftPlayerSelector {
+    width: 60%
+}
 

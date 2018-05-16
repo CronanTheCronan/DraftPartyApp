@@ -64,7 +64,7 @@ namespace DraftPartyApplication
                     }
                     else
                     {
-                        htmlTable.AppendLine("<td id='row" + i + "col" + (j + 1) + "' class='draftCell'>");
+                        htmlTable.AppendLine("<td id='Round" + i + "Pick" + (j) + "' class='draftCell'>");
                         htmlTable.AppendLine("</td>");
                     }
                 }

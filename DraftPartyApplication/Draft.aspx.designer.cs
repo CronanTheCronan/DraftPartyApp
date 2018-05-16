@@ -22,6 +22,15 @@ namespace DraftPartyApplication {
         protected global::System.Web.UI.WebControls.Label lblLeagueName;
         
         /// <summary>
+        /// btnProcessPlayer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnProcessPlayer;
+        
+        /// <summary>
         /// tblDraftBoard control.
         /// </summary>
         /// <remarks>
