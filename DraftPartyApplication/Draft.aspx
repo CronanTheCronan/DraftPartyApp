@@ -2,6 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    
+    
     <div id="divDraftContainer">
         <div id="divRoundInfoContainer">
             <div id="divRoundInfo">
@@ -11,7 +13,7 @@
             </div>
             <div id="divDraftPlayerSelector">
                 <div>Player Selector TODO</div>
-                <div><asp:Button runat="server" ID="btnProcessPlayer" CssClass="btn btn-dark" Text="Pick" /></div>
+                <div><asp:Button runat="server" ID="btnProcessPlayer" CssClass="btn btn-dark" Text="Pick" OnClientClick="return prepareDraft()" /></div>
             </div>
             <div>
                 <div></div>
@@ -22,4 +24,16 @@
             <asp:Literal ID="tblDraftBoard" runat="server" />
         </div>
     </div>
+
+    <script>
+
+        function prepareDraft() {
+            var myArr = [];
+
+            myArr = $('.draftCell').map(function (index, element) {
+                return $(element).attr('id');
+            }).get();
+        }
+        
+    </script>
 </asp:Content>

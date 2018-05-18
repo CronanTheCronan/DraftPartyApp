@@ -26,7 +26,6 @@ namespace DraftPartyApplication
         {
             string[] teamIdsArray = teamIds.Split(',');
             string[] teamNamesArray = teamNames.Split(',');
-            int roundCount = 1;
 
             StringBuilder htmlTable = new StringBuilder();
             htmlTable.AppendLine("<table id='draftBoard'>");
@@ -55,17 +54,36 @@ namespace DraftPartyApplication
             {
                 htmlTable.AppendLine("<tr>");
 
-                for (int j = 0; j <= cols; j++)
+                if (i % 2 == 1)
                 {
-                    if(j == 0)
+                    for (int j = 0; j <= cols; j++)
                     {
-                        htmlTable.AppendLine("<td>Round " + roundCount + "</td>");
-                        roundCount++;
+                        if (j == 0)
+                        {
+                            htmlTable.AppendLine("<td>Round " + i + "</td>");
+                        }
+                        else
+                        {
+                            htmlTable.AppendLine("<td id='Round" + i + "Pick" + (j) + "' class='draftCell'>");
+                            htmlTable.AppendLine("</td>");
+                        }
                     }
-                    else
+                    
+                }
+                else
+                {
+                    for (int j = cols + 1; j >= 1; j--)
                     {
-                        htmlTable.AppendLine("<td id='Round" + i + "Pick" + (j) + "' class='draftCell'>");
-                        htmlTable.AppendLine("</td>");
+                        if (j == cols + 1)
+                        {
+                            htmlTable.AppendLine("<td>Round " + i + "</td>");
+                        }
+                        else
+                        {
+                            
+                            htmlTable.AppendLine("<td id='Round" + i + "Pick" + (j) + "' class='draftCell'>");
+                            htmlTable.AppendLine("</td>");
+                        }
                     }
                 }
                 htmlTable.AppendLine("</tr>");
