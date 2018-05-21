@@ -46,15 +46,19 @@ namespace DraftPartyApplication
             htmlTable.AppendLine("<thead>");
             htmlTable.AppendLine("<tr>");
 
-            for (int i = 1; i <= cols; i++)
+            if(rows >= 10)
             {
-                if (i == 2)
+                cols = 4;
+                for (int i = 0; i < cols / 2; i++)
                 {
-                    htmlTable.AppendLine("<th>Team Name</th>");
+                    htmlTable.AppendLine("<th colspan=\"2\">Team Name</th>");
                 }
-                else
+            }
+            else
+            {
+                for(int i = 1; i < cols; i++)
                 {
-                    htmlTable.AppendLine("<th></th>");
+                    htmlTable.AppendLine("<th colspan=\"2\">Team Name</th>");
                 }
             }
 
@@ -65,23 +69,48 @@ namespace DraftPartyApplication
             for (int i = 1; i <= rows; i++)
             {
                 htmlTable.AppendLine("<tr>");
-
-                for (int j = 1; j <= cols; j++)
+                if (rows >= 10)
                 {
-                    if (j % 2 == 0)
+                    cols = 4;
+                    for (int j = 0; j < cols; j++)
                     {
-                        TextBox tb = new TextBox();
-                        string temp = i.ToString();
-                        htmlTable.AppendLine("<td id='teamsTxtTD" + temp + "'>");
-                        htmlTable.AppendLine("<input type='text' id='txtTeamName" + i + "' class='teamsInputs' />");
-                        htmlTable.AppendLine("</td>");
+                        if (j % 2 == 0)
+                        {
+                            Label lbl = new Label();
+                            htmlTable.AppendLine("<td id='teamsLblTD" + i + "' align='right'>");
+                            htmlTable.AppendLine("<label for='txtTeamName" + i + "' class='teamsLabels' id='Team" + i + "'>Team " + i + "</label>");
+                            htmlTable.AppendLine("</td>");
+                        }
+                        else
+                        {
+                            TextBox tb = new TextBox();
+                            string temp = i.ToString();
+                            htmlTable.AppendLine("<td id='teamsTxtTD" + temp + "'>");
+                            htmlTable.AppendLine("<input type='text' id='txtTeamName" + i + "' class='teamsInputs' />");
+                            htmlTable.AppendLine("</td>");
+
+                        }
                     }
-                    else
+                }
+                else
+                {
+                    for (int j = 1; j <= cols; j++)
                     {
-                        Label lbl = new Label();
-                        htmlTable.AppendLine("<td id='teamsLblTD" + i + "' align='right'>");
-                        htmlTable.AppendLine("<label for='txtTeamName" + i + "' class='teamsLabels' id='Team" + i + "'>Team " + i + "</label>");
-                        htmlTable.AppendLine("</td>");
+                        if (j % 2 == 0)
+                        {
+                            TextBox tb = new TextBox();
+                            string temp = i.ToString();
+                            htmlTable.AppendLine("<td id='teamsTxtTD" + temp + "'>");
+                            htmlTable.AppendLine("<input type='text' id='txtTeamName" + i + "' class='teamsInputs' />");
+                            htmlTable.AppendLine("</td>");
+                        }
+                        else
+                        {
+                            Label lbl = new Label();
+                            htmlTable.AppendLine("<td id='teamsLblTD" + i + "' align='right'>");
+                            htmlTable.AppendLine("<label for='txtTeamName" + i + "' class='teamsLabels' id='Team" + i + "'>Team " + i + "</label>");
+                            htmlTable.AppendLine("</td>");
+                        }
                     }
                 }
 

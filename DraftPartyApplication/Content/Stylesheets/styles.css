@@ -59,16 +59,16 @@ h3 {
     align-items: center;
 }
 
-#teamsTable {
-    border: 2px solid black;
+#divTeamSetupContainer h2 {
+    color: #4CAF50;
 }
 
-#teamsTable {
-    height: 400px;
+#teamsTable th {
+    text-align: center;
 }
 
 #teamsTable td {
-    width: 500px;
+    width: 225px;
 }
 
 #teamsTable label {
@@ -175,6 +175,13 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #divDraftPlayerSelector {
-    width: 60%
+    display: flex;
+    justify-content: center;
+}
+
+#divFilterSettings {
+    display: flex;
+    flex-direction: column;
+    align-content: space-evenly;
 }
 

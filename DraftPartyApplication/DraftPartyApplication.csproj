@@ -45,6 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -75,6 +76,7 @@
     <Content Include="Content\Stylesheets\styles.css" />
     <Content Include="Draft.aspx" />
     <Content Include="DraftSetup.aspx" />
+    <Content Include="FootballDBService.asmx" />
     <Content Include="Global.asax" />
     <Content Include="LeagueSetup.aspx" />
     <Content Include="TeamSetup.aspx" />
@@ -97,6 +99,16 @@
     </Compile>
     <Compile Include="DraftSetup.aspx.designer.cs">
       <DependentUpon>DraftSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FantasyFootballDB.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FantasyFootballDB.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="FFPlayers.cs" />
+    <Compile Include="FootballDBService.asmx.cs">
+      <DependentUpon>FootballDBService.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -132,6 +144,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FantasyFootballDB.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>FantasyFootballDB.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="FantasyFootballDB.dbml.layout">
+      <DependentUpon>FantasyFootballDB.dbml</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <Content Include="Site.Master" />
     <None Include="Web.Debug.config">
@@ -143,6 +163,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -13,6 +13,15 @@ namespace DraftPartyApplication {
     public partial class Draft {
         
         /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        
+        /// <summary>
         /// lblLeagueName control.
         /// </summary>
         /// <remarks>
@@ -22,13 +31,22 @@ namespace DraftPartyApplication {
         protected global::System.Web.UI.WebControls.Label lblLeagueName;
         
         /// <summary>
-        /// btnProcessPlayer control.
+        /// ddlTeamsFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnProcessPlayer;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTeamsFilter;
+        
+        /// <summary>
+        /// ddlPositionFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPositionFilter;
         
         /// <summary>
         /// tblDraftBoard control.

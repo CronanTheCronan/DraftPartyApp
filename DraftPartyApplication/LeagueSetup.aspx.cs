@@ -9,6 +9,11 @@ namespace DraftPartyApplication
 {
     public partial class LeagueSetup : System.Web.UI.Page
     {
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            Session.Abandon();
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             PopulateNumOfTeamsDDL();

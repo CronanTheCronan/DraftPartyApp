@@ -15,11 +15,38 @@ namespace DraftPartyApplication
         protected string teamIds = GlobalVariables.TeamIdList;
         protected string teamNames = GlobalVariables.TeamNameList;
         protected string leagueName = GlobalVariables.LeagueName;
+        FantasyFootballDBDataContext ffddc = new FantasyFootballDBDataContext();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblLeagueName.Text = leagueName;
+            //if (GlobalVariables.NumberOfRounds <= 0)
+            //{
+            //    Response.Redirect("~/LeagueSetup.aspx");
+            //}
+            
+            SetupPage();
             GenerateTable(rows, cols);
+            
+        }
+
+        private void SetupPage()
+        {
+            lblLeagueName.Text = leagueName;
+            PopulateDDLs();
+        }
+
+        private void PopulateDDLs()
+        {
+
+            ddlPositionFilter.DataSource = ffddc.Positions;
+            ddlPositionFilter.DataTextField = "position_name";
+            ddlPositionFilter.DataValueField = "position_id";
+            ddlPositionFilter.DataBind();
+
+            ddlTeamsFilter.DataSource = ffddc.Teams;
+            ddlTeamsFilter.DataTextField = "team_name";
+            ddlTeamsFilter.DataValueField = "team_id";
+            ddlTeamsFilter.DataBind();
         }
 
         private void GenerateTable(int rows, int cols)
@@ -95,5 +122,15 @@ namespace DraftPartyApplication
             tblDraftBoard.Text = htmlTable.ToString();
         }
 
+
+        //protected void playerFilter()
+        //{
+        //    gvTest.DataSource = from player in ffddc.Players
+        //                        where player.position_id == ddlPositionFilter.SelectedIndex
+        //                        && player.team_id == ddlTeamsFilter.SelectedIndex
+        //                        select player;
+
+        //    gvTest.DataBind();
+        //}
     }
 }

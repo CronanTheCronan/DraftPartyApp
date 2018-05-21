@@ -10,7 +10,9 @@
     <link href="~/Content/Stylesheets/bootstrap.min.css" rel="stylesheet" runat="server" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
     <link href="Content/Stylesheets/styles.css" rel="stylesheet" />
-    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="Content/Scripts/bootstrap.min.js"></script>
+    <script src="Content/Scripts/script.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -33,8 +35,6 @@
             </asp:ContentPlaceHolder>
         </div>
     </form>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="Content/Scripts/bootstrap.min.js"></script>
-    <script src="Content/Scripts/script.js"></script>
+
 </body>
 </html>
