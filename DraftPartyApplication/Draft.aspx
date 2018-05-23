@@ -16,12 +16,12 @@
                 </div>
 
                 <div>
-                    <input id="btnStartDraft" type="button" class="btn btn-dark" value="Start Draft" />
+                    <asp:Button runat="server" ID="btnStartDraft" CssClass="btn btn-success" Text="Start Draft" OnClick="btnStartDraft_Click" />
                     <input id="btnDraftPlayer" type="button" class="btn btn-success" value="Draft Player" />
                 </div>
 
             <div id="divDraftPlayerSelector">
-                <div>
+                <%--<div>
                     <table id="tblPlayerTable" border="1" style="border-collapse: collapse">
                         <thead>
                             <tr>
@@ -32,6 +32,19 @@
                         </thead>
                         <tbody></tbody>
                     </table>
+                </div>--%>
+
+                <div>
+                    <asp:GridView ID="GridView1" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
+                        <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+                        <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+                        <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                        <SortedAscendingCellStyle BackColor="#F7F7F7" />
+                        <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+                        <SortedDescendingCellStyle BackColor="#E5E5E5" />
+                        <SortedDescendingHeaderStyle BackColor="#242121" />
+                    </asp:GridView>
                 </div>
                 <div id="divFilterSettings">
                     <div>
@@ -43,7 +56,7 @@
 
                     </div>
                     <div>
-                        <input type="button" id="btnFilterPlayers" value="Filter" class="btn btn-dark" />
+                        <asp:Button runat="server" ID="btnFilterPlayers" CssClass="btn btn-dark" Text="Filter" OnClick="btnFilterPlayers_Click" />
                     </div>
                 </div>
             </div>
@@ -55,16 +68,16 @@
         </div>
     </div>
    
-    <script type="text/javascript">
+<%--    <script type="text/javascript">
 
         var draftStarted = false;
         var myArr = [];
         var firstPick;
         var playerSelected;
 
+--%>
 
-
-$('#btnDraftPlayer').click(function(){
+<%--$('#btnDraftPlayer').click(function(){
 	var currentPick = $('#' + myArr[0]);
 	$(currentPick).text(playerSelected);
 	myArr.shift();
@@ -153,6 +166,6 @@ $('#btnDraftPlayer').click(function(){
         });
 
         
-    </script>
+    </script>--%>
 
 </asp:Content>

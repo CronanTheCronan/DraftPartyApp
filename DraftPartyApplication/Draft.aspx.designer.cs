@@ -31,6 +31,24 @@ namespace DraftPartyApplication {
         protected global::System.Web.UI.WebControls.Label lblLeagueName;
         
         /// <summary>
+        /// btnStartDraft control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnStartDraft;
+        
+        /// <summary>
+        /// GridView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView1;
+        
+        /// <summary>
         /// ddlTeamsFilter control.
         /// </summary>
         /// <remarks>
@@ -47,6 +65,15 @@ namespace DraftPartyApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlPositionFilter;
+        
+        /// <summary>
+        /// btnFilterPlayers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnFilterPlayers;
         
         /// <summary>
         /// tblDraftBoard control.

@@ -5,16 +5,29 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace DraftPartyApplication
 {
     public partial class Draft : System.Web.UI.Page
     {
-        protected static int rows = GlobalVariables.NumberOfRounds;
-        protected static int cols = GlobalVariables.NumberOfTeams;
-        protected string teamIds = GlobalVariables.TeamIdList;
-        protected string teamNames = GlobalVariables.TeamNameList;
-        protected string leagueName = GlobalVariables.LeagueName;
+        protected static int rows = 16;
+        protected static int cols = 6;
+        protected string teamIds = "Team1,Team2,Team3,Team4,Team5,Team6";
+        protected string teamNames = "Team1,Team2,Team3,Team4,Team5,Team6";
+        protected string leagueName = "TestLeague";
+        protected bool isDrafting = false;
+        protected DataTable tempPlayerTable = new DataTable();
+
+        //protected static int rows = GlobalVariables.NumberOfRounds;
+        //protected static int cols = GlobalVariables.NumberOfTeams;
+        //protected string teamIds = GlobalVariables.TeamIdList;
+        //protected string teamNames = GlobalVariables.TeamNameList;
+        //protected string leagueName = GlobalVariables.LeagueName;
+        //protected bool isDrafting = GlobalVariables.IsDrafting;
+
         FantasyFootballDBDataContext ffddc = new FantasyFootballDBDataContext();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -23,10 +36,12 @@ namespace DraftPartyApplication
             //{
             //    Response.Redirect("~/LeagueSetup.aspx");
             //}
-            
-            SetupPage();
-            GenerateTable(rows, cols);
-            
+
+            if (!IsPostBack)
+            {
+                SetupPage();
+                GenerateTable(rows, cols);
+            }
         }
 
         private void SetupPage()
@@ -121,6 +136,64 @@ namespace DraftPartyApplication
 
             tblDraftBoard.Text = htmlTable.ToString();
         }
+
+        protected void btnStartDraft_Click(object sender, EventArgs e)
+        {
+            isDrafting = true;
+
+            using (SqlConnection con  = new SqlConnection(ConfigurationManager.ConnectionStrings["FantasyFootballConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_GetAllPlayers", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        sda.Fill(tempPlayerTable);
+                    }
+                }
+            }
+
+            Session["tempTable"] = tempPlayerTable;
+
+            var results = from row in tempPlayerTable.AsEnumerable()
+                          where row.Field<int>("PositionID") == 1
+                            && row.Field<int>("TeamID") == 1
+                          select new
+                          {
+                              PositionName = row.Field<string>("PositionName"),
+                              FirstName = row.Field<string>("FirstName"),
+                              LastName = row.Field<string>("LastName"),
+                              TeamName = row.Field<string>("TeamName")
+                          };
+
+            GridView1.DataSource = results;
+            GridView1.DataBind();
+
+
+        }
+
+        protected void btnFilterPlayers_Click(object sender, EventArgs e)
+        {
+            GridView1.DataSource = null;
+
+            var tempPlayerTable2 = (DataTable)Session["tempTable"];
+
+            var results = from row in tempPlayerTable2.AsEnumerable()
+                          where row.Field<int>("PositionID") == (ddlPositionFilter.SelectedIndex + 1)
+                                && row.Field<int>("TeamID") == (ddlTeamsFilter.SelectedIndex + 1)
+                          select new
+                          {
+                              PositionName = row.Field<string>("PositionName"),
+                              FirstName = row.Field<string>("FirstName"),
+                              LastName = row.Field<string>("LastName"),
+                              TeamName = row.Field<string>("TeamName")
+                          };
+
+            GridView1.DataSource = results;
+            GridView1.DataBind();
+        }
+
 
 
         //protected void playerFilter()

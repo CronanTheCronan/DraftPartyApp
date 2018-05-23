@@ -5,4 +5,5 @@
     public const string teamIdList = "";
     public const string teamNameList = "";
     public const int numberOfRounds = -1;
+    public const bool isDrafting = false;
 }

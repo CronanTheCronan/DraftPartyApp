@@ -14,7 +14,7 @@
         <elementListCompartment Id="cb56a2a6-eede-4a25-98ab-c19dc39c7765" absoluteBounds="1.6400000000000001, 4.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.6875 : 4.375); (2.6875 : 2.7131982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.6875 : 4.375); (2.6875 : 2.7131982421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/FantasyFootballDBDataContext/Position/Position_Player" />
       <nodes>
         <classShapeMoniker Id="5aa720b1-27a9-4229-97d8-35b46f156071" />
@@ -27,7 +27,7 @@
         <elementListCompartment Id="a00a3649-7702-46d7-b019-89fc1d45fe1c" absoluteBounds="5.14, 1.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.125 : 1.76044840494792); (3.75 : 1.76044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.125 : 1.76044840494792); (3.75 : 1.76044840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/FantasyFootballDBDataContext/Team/Team_Player" />
       <nodes>
         <classShapeMoniker Id="ecf4aa7a-b24e-4b77-a538-a8d8e25f8074" />

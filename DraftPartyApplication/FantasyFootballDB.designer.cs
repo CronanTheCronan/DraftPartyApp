@@ -94,6 +94,20 @@ namespace DraftPartyApplication
 				return this.GetTable<Team>();
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_CreatePlayersTmpTbl")]
+		public ISingleResult<Player> sp_CreatePlayersTmpTbl()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<Player>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_FilterPlayersTmpTbl")]
+		public ISingleResult<Player> sp_FilterPlayersTmpTbl([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> positionId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> teamId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), positionId, teamId);
+			return ((ISingleResult<Player>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Players")]
