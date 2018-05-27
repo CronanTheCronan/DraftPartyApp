@@ -39,9 +39,28 @@ namespace DraftPartyApplication
 
             if (!IsPostBack)
             {
+                PopulateDataTable();
                 SetupPage();
                 GenerateTable(rows, cols);
             }
+        }
+
+        private void PopulateDataTable()
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["FantasyFootballConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_GetAllPlayers", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        sda.Fill(dt);
+                    }
+                }
+            }
+            Session["tempTable"] = dt;
         }
 
         private void SetupPage()
@@ -57,11 +76,15 @@ namespace DraftPartyApplication
             ddlPositionFilter.DataTextField = "position_name";
             ddlPositionFilter.DataValueField = "position_id";
             ddlPositionFilter.DataBind();
+            ddlPositionFilter.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+            ddlPositionFilter.SelectedIndex = 0;
 
             ddlTeamsFilter.DataSource = ffddc.Teams;
             ddlTeamsFilter.DataTextField = "team_name";
             ddlTeamsFilter.DataValueField = "team_id";
             ddlTeamsFilter.DataBind();
+            ddlTeamsFilter.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+            ddlTeamsFilter.SelectedIndex = 0;
         }
 
         private void GenerateTable(int rows, int cols)
@@ -137,73 +160,48 @@ namespace DraftPartyApplication
             tblDraftBoard.Text = htmlTable.ToString();
         }
 
-        protected void btnStartDraft_Click(object sender, EventArgs e)
-        {
-            isDrafting = true;
-
-            using (SqlConnection con  = new SqlConnection(ConfigurationManager.ConnectionStrings["FantasyFootballConnectionString"].ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand("sp_GetAllPlayers", con))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
-                    {
-                        sda.Fill(tempPlayerTable);
-                    }
-                }
-            }
-
-            Session["tempTable"] = tempPlayerTable;
-
-            var results = from row in tempPlayerTable.AsEnumerable()
-                          where row.Field<int>("PositionID") == 1
-                            && row.Field<int>("TeamID") == 1
-                          select new
-                          {
-                              PositionName = row.Field<string>("PositionName"),
-                              FirstName = row.Field<string>("FirstName"),
-                              LastName = row.Field<string>("LastName"),
-                              TeamName = row.Field<string>("TeamName")
-                          };
-
-            GridView1.DataSource = results;
-            GridView1.DataBind();
-
-
-        }
-
-        protected void btnFilterPlayers_Click(object sender, EventArgs e)
-        {
-            GridView1.DataSource = null;
-
-            var tempPlayerTable2 = (DataTable)Session["tempTable"];
-
-            var results = from row in tempPlayerTable2.AsEnumerable()
-                          where row.Field<int>("PositionID") == (ddlPositionFilter.SelectedIndex + 1)
-                                && row.Field<int>("TeamID") == (ddlTeamsFilter.SelectedIndex + 1)
-                          select new
-                          {
-                              PositionName = row.Field<string>("PositionName"),
-                              FirstName = row.Field<string>("FirstName"),
-                              LastName = row.Field<string>("LastName"),
-                              TeamName = row.Field<string>("TeamName")
-                          };
-
-            GridView1.DataSource = results;
-            GridView1.DataBind();
-        }
-
-
-
-        //protected void playerFilter()
+        //protected void btnStartDraft_Click(object sender, EventArgs e)
         //{
-        //    gvTest.DataSource = from player in ffddc.Players
-        //                        where player.position_id == ddlPositionFilter.SelectedIndex
-        //                        && player.team_id == ddlTeamsFilter.SelectedIndex
-        //                        select player;
+        //    isDrafting = true;
 
-        //    gvTest.DataBind();
+        //    Session["tempTable"] = tempPlayerTable;
+
+        //    var results = from row in tempPlayerTable.AsEnumerable()
+        //                  where row.Field<int>("PositionID") == 1
+        //                    && row.Field<int>("TeamID") == 1
+        //                  select new
+        //                  {
+        //                      PositionName = row.Field<string>("PositionName"),
+        //                      FirstName = row.Field<string>("FirstName"),
+        //                      LastName = row.Field<string>("LastName"),
+        //                      TeamName = row.Field<string>("TeamName")
+        //                  };
+
+        //    GridView1.DataSource = results;
+        //    GridView1.DataBind();
+
+
+        //}
+
+        //protected void btnFilterPlayers_Click(object sender, EventArgs e)
+        //{
+        //    GridView1.DataSource = null;
+
+        //    var tempPlayerTable2 = (DataTable)Session["tempTable"];
+
+        //    var results = from row in tempPlayerTable2.AsEnumerable()
+        //                  where row.Field<int>("PositionID") == (ddlPositionFilter.SelectedIndex + 1)
+        //                        && row.Field<int>("TeamID") == (ddlTeamsFilter.SelectedIndex + 1)
+        //                  select new
+        //                  {
+        //                      PositionName = row.Field<string>("PositionName"),
+        //                      FirstName = row.Field<string>("FirstName"),
+        //                      LastName = row.Field<string>("LastName"),
+        //                      TeamName = row.Field<string>("TeamName")
+        //                  };
+
+        //    GridView1.DataSource = results;
+        //    GridView1.DataBind();
         //}
     }
 }

@@ -16,25 +16,26 @@
                 </div>
 
                 <div>
-                    <asp:Button runat="server" ID="btnStartDraft" CssClass="btn btn-success" Text="Start Draft" OnClick="btnStartDraft_Click" />
+                    <input id="btnStartDraft" type="button" class="btn btn-success" value="Start Draft" />
                     <input id="btnDraftPlayer" type="button" class="btn btn-success" value="Draft Player" />
                 </div>
 
             <div id="divDraftPlayerSelector">
-                <%--<div>
+                <div>
                     <table id="tblPlayerTable" border="1" style="border-collapse: collapse">
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
                                 <th>Position</th>
                                 <th>Team</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
                     </table>
-                </div>--%>
+                </div>
 
-                <div>
+<%--                <div>
                     <asp:GridView ID="GridView1" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
                         <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
                         <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
@@ -45,7 +46,7 @@
                         <SortedDescendingCellStyle BackColor="#E5E5E5" />
                         <SortedDescendingHeaderStyle BackColor="#242121" />
                     </asp:GridView>
-                </div>
+                </div>--%>
                 <div id="divFilterSettings">
                     <div>
                         <asp:DropDownList runat="server" ID="ddlTeamsFilter" />
@@ -56,7 +57,7 @@
 
                     </div>
                     <div>
-                        <asp:Button runat="server" ID="btnFilterPlayers" CssClass="btn btn-dark" Text="Filter" OnClick="btnFilterPlayers_Click" />
+                        <input id="btnFilterPlayers" type="button" class="btn btn-dark" value="Filter" />
                     </div>
                 </div>
             </div>
@@ -68,16 +69,28 @@
         </div>
     </div>
    
-<%--    <script type="text/javascript">
+<script type="text/javascript">
 
         var draftStarted = false;
         var myArr = [];
         var firstPick;
         var playerSelected;
 
---%>
+   
+    // Dynamically styles player selector gridview. need to work out functionality
+    // to keep from selecting/deselecting first row.
+    $('#divDraftPlayerSelector').find("tr").hover(function(){
+	$(this).css("background-color", "green");
+	$(this).css("color", "white");
+	$(this).css("cursor", "pointer");
+	}, function(){
+	$(this).css("background-color", "white");
+	$(this).css("color", "black");
+	$(this).css("cursor", "pointer");
+});
 
-<%--$('#btnDraftPlayer').click(function(){
+
+$('#btnDraftPlayer').click(function(){
 	var currentPick = $('#' + myArr[0]);
 	$(currentPick).text(playerSelected);
 	myArr.shift();
@@ -97,7 +110,20 @@
 
             $(this).css('display', 'none');
 
-        })
+    })
+
+    $(document).ready(function () {
+        $.ajax({
+            url: 'FootballDbService.asmx/GetAllPlayers',
+            data: {},
+            method: 'post',
+            dataType: 'json',
+            success: function () { alert("Success") },
+                error: function (err) {
+                    alert(err);
+                }
+            });
+    });
 
         $(document).ready(function () {
             var posID = $('select[id$=ddlPositionFilter]').val();
@@ -106,8 +132,8 @@
             $.ajax({
                 url: 'FootballDbService.asmx/GetPlayersFromFilter',
                 data: {
-                    posID: posID,
-                    teamID: teamID
+                    posID: 1,
+                    teamID: 1
                 },
                 method: 'post',
                 dataType: 'json',
@@ -116,8 +142,9 @@
                     playerTable.empty();
 
                     $(data).each(function (index, player) {
-                        playerTable.append('<tr><td>' + player.PlayerName + '</td><td>'
-                            + player.PositionName + '</td><td>' + player.TeamName + '</td>')
+                        playerTable.append('<tr><td>' + player.PlayerFirstName + '</td><td>'
+                            + player.PlayerLastName + '</td><td>' + player.PositionName +
+                            '</td><td>' + player.TeamName + '</td>')
                     })
                 },
                 error: function (err) {
@@ -144,8 +171,9 @@
                         playerTable.empty();
 
                         $(data).each(function (index, player) {
-                            playerTable.append('<tr><td>' + player.PlayerName + '</td><td>'
-                            + player.PositionName + '</td><td>' + player.TeamName + '</td>')
+                            playerTable.append('<tr><td>' + player.PlayerFirstName + '</td><td>'
+                                + player.PlayerLastName + '</td><td>' + player.PositionName +
+                                '</td><td>' + player.TeamName + '</td>')
                         })
                     },
                     error: function (err) {
@@ -167,5 +195,5 @@
 
         
     </script>--%>
-
+    <asp:HiddenField runat="server" ID="hdnPlayerSelected" />
 </asp:Content>

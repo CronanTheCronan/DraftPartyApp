@@ -7,7 +7,9 @@ namespace DraftPartyApplication
 {
     public class FFPlayers
     {
-        public string PlayerName { get; set; }
+        public int PlayerID { get; set; }
+        public string PlayerLastName { get; set; }
+        public string PlayerFirstName { get; set; }
         public int PositionID { get; set; }
         public string PositionName { get; set; }
         public int TeamID { get; set; }

@@ -20,38 +20,85 @@ namespace DraftPartyApplication
     [System.Web.Script.Services.ScriptService]
     public class FootballDBService : System.Web.Services.WebService
     {
+        DataTable dt = new DataTable();
 
-        [WebMethod]
-        public  void GetPlayersFromFilter(int posID, int teamID)
+        private void PopulateDataTable()
+        {
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["FantasyFootballConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_GetAllPlayers", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        sda.Fill(dt);
+                    }
+                }
+            }
+            Session["tempTable"] = dt;
+        }
+
+        [WebMethod(EnableSession = true)]
+        public void GetAllPlayers()
         {
             List<FFPlayers> listPlayers = new List<FFPlayers>();
 
-            string cs = ConfigurationManager.ConnectionStrings["FantasyFootballConnectionString"].ConnectionString;
-            using (SqlConnection con = new SqlConnection(cs))
+            PopulateDataTable();
+            var results = from row in dt.AsEnumerable()
+                          select new
+                          {
+                              PlayerID = row.Field<int>("PlayerID"),
+                              FirstName = row.Field<string>("FirstName"),
+                              LastName = row.Field<string>("LastName"),
+                              PositionID = row.Field<int>("PositionID"),
+                              PositionName = row.Field<string>("PositionName"),
+                              TeamID = row.Field<int>("TeamID"),
+                              TeamName = row.Field<string>("TeamName")
+                          };
+            foreach (var result in results)
             {
-                SqlCommand cmd = new SqlCommand("sp_GetPlayersByFilter", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.Add(new SqlParameter("@positionID", posID));
-                cmd.Parameters.Add(new SqlParameter("@teamID", teamID));
-                con.Open();
-                SqlDataReader rdr = cmd.ExecuteReader();
-
-                while(rdr.Read())
-                {
-                    FFPlayers player = new FFPlayers();
-                    player.PlayerName = rdr["PlayerName"].ToString();
-                    player.PositionID = Convert.ToInt32(rdr["PositionID"]);
-                    player.PositionName = rdr["PositionName"].ToString();
-                    player.TeamID = Convert.ToInt32(rdr["TeamID"]);
-                    player.TeamName = rdr["TeamName"].ToString();
-                    listPlayers.Add(player);
-                }
-
+                FFPlayers player = new FFPlayers();
+                player.PlayerID = result.PlayerID;
+                player.PlayerFirstName = result.FirstName;
+                player.PlayerLastName = result.LastName;
+                player.PositionID = result.PositionID;
+                player.PositionName = result.PositionName;
+                player.TeamID = result.TeamID;
+                player.TeamName = result.TeamName;
+                listPlayers.Add(player);
             }
 
             JavaScriptSerializer js = new JavaScriptSerializer();
             Context.Response.Write(js.Serialize(listPlayers));
+        }
+
+        [WebMethod(EnableSession = true)]
+        public void GetPlayersFromFilter(int posID, int teamID)
+        {
+            DataTable dt = (DataTable)Session["tempTable"];
+            var results = from row in dt.AsEnumerable()
+                          where row.Field<int>("PositionID") == posID
+                          && row.Field<int>("TeamID") == teamID
+                          select new
+                          {
+                              PositionName = row.Field<string>("PositionName"),
+                              FirstName = row.Field<string>("FirstName"),
+                              LastName = row.Field<string>("LastName"),
+                              TeamName = row.Field<string>("TeamName")
+                          };
+
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            Context.Response.Write(js.Serialize(results));
+        }
+
+        [WebMethod(EnableSession = true)]
+        public void RemovePlayerFromTable(int playerID)
+        {
+            DataTable dt = (DataTable)Session["tempTable"];
+            dt.AsEnumerable().Where(row => row.Field<int>("PlayerID") == playerID).ToList().ForEach(row => row.Delete());
+            dt.AcceptChanges();
+                          
         }
     }
 }
