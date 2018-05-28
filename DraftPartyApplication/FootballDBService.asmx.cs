@@ -76,20 +76,74 @@ namespace DraftPartyApplication
         [WebMethod(EnableSession = true)]
         public void GetPlayersFromFilter(int posID, int teamID)
         {
+            List<FFPlayers> listPlayers = new List<FFPlayers>();
+
             DataTable dt = (DataTable)Session["tempTable"];
             var results = from row in dt.AsEnumerable()
                           where row.Field<int>("PositionID") == posID
                           && row.Field<int>("TeamID") == teamID
                           select new
                           {
+                              PlayerID = row.Field<int>("PlayerID"),
+                              PositionID = row.Field<int>("PositionID"),
                               PositionName = row.Field<string>("PositionName"),
                               FirstName = row.Field<string>("FirstName"),
                               LastName = row.Field<string>("LastName"),
+                              TeamID = row.Field<int>("TeamID"),
                               TeamName = row.Field<string>("TeamName")
                           };
 
+            foreach(var result in results)
+            {
+                FFPlayers player = new FFPlayers();
+                player.PlayerID = result.PlayerID;
+                player.PositionID = result.PositionID;
+                player.PositionName = result.PositionName;
+                player.PlayerFirstName = result.FirstName;
+                player.PlayerLastName = result.LastName;
+                player.TeamID = result.TeamID;
+                player.TeamName = result.TeamName;
+                listPlayers.Add(player);
+            }
+
             JavaScriptSerializer js = new JavaScriptSerializer();
-            Context.Response.Write(js.Serialize(results));
+            Context.Response.Write(js.Serialize(listPlayers));
+        }
+
+        [WebMethod(EnableSession = true)]
+        public void GetPlayerByID(int playerID)
+        {
+            List<FFPlayers> listPlayers = new List<FFPlayers>();
+
+            DataTable dt = (DataTable)Session["tempTable"];
+            var results = from row in dt.AsEnumerable()
+                          where row.Field<int>("PlayerID") == playerID
+                          select new
+                          {
+                              PlayerID = row.Field<int>("PlayerID"),
+                              PositionID = row.Field<int>("PositionID"),
+                              PositionName = row.Field<string>("PositionName"),
+                              FirstName = row.Field<string>("FirstName"),
+                              LastName = row.Field<string>("LastName"),
+                              TeamID = row.Field<int>("TeamID"),
+                              TeamName = row.Field<string>("TeamName")
+                          };
+
+            foreach (var result in results)
+            {
+                FFPlayers player = new FFPlayers();
+                player.PlayerID = result.PlayerID;
+                player.PositionID = result.PositionID;
+                player.PositionName = result.PositionName;
+                player.PlayerFirstName = result.FirstName;
+                player.PlayerLastName = result.LastName;
+                player.TeamID = result.TeamID;
+                player.TeamName = result.TeamName;
+                listPlayers.Add(player);
+            }
+
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            Context.Response.Write(js.Serialize(listPlayers));
         }
 
         [WebMethod(EnableSession = true)]

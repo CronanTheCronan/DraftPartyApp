@@ -15,10 +15,10 @@ namespace DraftPartyApplication
     {
         protected static int rows = 16;
         protected static int cols = 6;
-        protected string teamIds = "Team1,Team2,Team3,Team4,Team5,Team6";
-        protected string teamNames = "Team1,Team2,Team3,Team4,Team5,Team6";
-        protected string leagueName = "TestLeague";
-        protected bool isDrafting = false;
+        protected string teamIds = "team1,team2,team3,team4,team5,team6";
+        protected string teamNames = "team1,team2,team3,team4,team5,team6";
+        protected string leagueName = "testleague";
+        protected bool isdrafting = false;
         protected DataTable tempPlayerTable = new DataTable();
 
         //protected static int rows = GlobalVariables.NumberOfRounds;
