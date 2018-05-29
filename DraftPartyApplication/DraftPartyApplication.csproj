@@ -86,11 +86,6 @@
   <ItemGroup>
     <Compile Include="App_Code\GlobalVariables.cs" />
     <Compile Include="App_Code\Constants.cs" />
-    <Compile Include="DataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Draft.aspx.cs">
       <DependentUpon>Draft.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -105,12 +100,12 @@
     <Compile Include="DraftSetup.aspx.designer.cs">
       <DependentUpon>DraftSetup.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FantasyFootballDB.designer.cs">
+    <Compile Include="FFPlayers.cs" />
+    <Compile Include="FootballDBLinq.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FantasyFootballDB.dbml</DependentUpon>
+      <DependentUpon>FootballDBLinq.dbml</DependentUpon>
     </Compile>
-    <Compile Include="FFPlayers.cs" />
     <Compile Include="FootballDBService.asmx.cs">
       <DependentUpon>FootballDBService.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -149,24 +144,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FantasyFootballDB.dbml">
+    <Content Include="FootballDBLinq.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>FantasyFootballDB.designer.cs</LastGenOutput>
+      <LastGenOutput>FootballDBLinq.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="DataSet1.xsc">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </Content>
-    <None Include="DataSet1.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
-    </None>
-    <Content Include="DataSet1.xss">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </Content>
-    <None Include="FantasyFootballDB.dbml.layout">
-      <DependentUpon>FantasyFootballDB.dbml</DependentUpon>
+    <None Include="FootballDBLinq.dbml.layout">
+      <DependentUpon>FootballDBLinq.dbml</DependentUpon>
     </None>
     <None Include="packages.config" />
     <Content Include="Site.Master" />

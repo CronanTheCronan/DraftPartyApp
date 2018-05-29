@@ -64,6 +64,7 @@
 <script type="text/javascript">
     // TODO get round count and col count from C#
     var isDrafting = false;
+    var pickIsReady = false;
     var myArr = [];
     var pick = 1;
     var round = 1;
@@ -77,7 +78,6 @@
     $(document).ready(function () {
         $('#divRoundDisplayContainer span').text(round);
         $('#divPickDisplayContainer span').text(pick);
-
     });
 
 
@@ -112,10 +112,10 @@
                     playerTable.empty();
 
                     $(data).each(function (index, player) {
-                        playerTable.append('<tr><td class="hdnPlayerID">' + player.PlayerID + '</td><td>' +
-                            player.PlayerFirstName + '</td><td>'
-                            + player.PlayerLastName + '</td><td id="playerPositionID">' + player.PositionName +
-                            '</td><td>' + player.TeamName + '</td></tr>')
+                        playerTable.append('<tr><td class="hdnPlayerID">' + player.PlayerId + '</td><td>' +
+                            player.FirstName + '</td><td>'
+                            + player.LastName + '</td><td id="playerPositionID">' + player.Position +
+                            '</td><td>' + player.Team + '</td></tr>')
                     })
                 },
                 error: function (err) {
@@ -159,10 +159,10 @@
                     playerTable.empty();
 
                     $(data).each(function (index, player) {
-                        playerTable.append('<tr><td class="hdnPlayerID">' + player.PlayerID + '</td><td>' +
-                            player.PlayerFirstName + '</td><td>'
-                            + player.PlayerLastName + '</td><td id="playerPositionID">' + player.PositionName +
-                            '</td><td>' + player.TeamName + '</td></tr>')
+                        playerTable.append('<tr><td class="hdnPlayerID">' + player.PlayerId + '</td><td>' +
+                            player.FirstName + '</td><td>'
+                            + player.LastName + '</td><td id="playerPositionID">' + player.Position +
+                            '</td><td>' + player.Team + '</td></tr>')
                     })
                 },
                 error: function (err) {
@@ -184,7 +184,7 @@
 
     $('#tblPlayerTableBody').on('click', 'tr', function(){
         playerSelected = $(this).find('.hdnPlayerID').text();
-        positionSelected = $(this).find('#playerPositionID').text();
+        positionSelected = $(this).find('#playerPositionId').text();
         playerSelectedDiv = $('#playerSelectedDiv');
 
         $.ajax({
@@ -199,9 +199,9 @@
                 playerSticker.empty();
 
                 $(data).each(function (index, player) {
-                    playerSticker.append('<div id="divTopRow"><div id="divTopLeft">' + player.PositionName + '</div><div id="divTopMiddle">'
-                                         + player.PlayerFirstName + '</div><div id="divTopRight">' + player.PlayerID + '</div></div>' +
-                                         '<div id="divBottomRow"><div id="divBottom">' + player.PlayerLastName + '</div></div>')
+                    playerSticker.append('<div id="divTopRow"><div id="divTopLeft">' + player.Position + '</div><div id="divTopMiddle">'
+                                         + player.FirstName + '</div><div id="divTopRight">' + player.PlayerId + '</div></div>' +
+                                         '<div id="divBottomRow"><div id="divBottom">' + player.LastName + '</div></div>')
                 })
             },
             error: function (err) {
@@ -304,10 +304,10 @@
                     playerTable.empty();
 
                     $(data).each(function (index, player) {
-                        playerTable.append('<tr><td class="hdnPlayerID">' + player.PlayerID + '</td><td>' +
-                            player.PlayerFirstName + '</td><td>'
-                            + player.PlayerLastName + '</td><td id="playerPositionID">' + player.PositionName +
-                            '</td><td>' + player.TeamName + '</td></tr>')
+                        playerTable.append('<tr><td class="hdnPlayerID">' + player.PlayerId + '</td><td>' +
+                            player.FirstName + '</td><td>'
+                            + player.LastName + '</td><td id="playerPositionID">' + player.Position +
+                            '</td><td>' + player.Team + '</td></tr>')
                     })
                 },
                 error: function (err) {
